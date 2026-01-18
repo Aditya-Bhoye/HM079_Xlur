@@ -1,73 +1,56 @@
-# React + TypeScript + Vite
+# AgroShare – Smart Agricultural Equipment Rental Platform 🌱🚜
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Problem Statement
 
-Currently, two official plugins are available:
+Small and marginal farmers often struggle to access costly agricultural machinery, leading to lower productivity and higher expenses. AgroShare solves this by enabling farmers to **rent, share, and manage agricultural equipment** in a transparent, affordable, and digital way.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Solution Overview
 
-## React Compiler
+AgroShare is a digital platform that connects **equipment owners** and **farmers** on a single marketplace. Farmers can discover nearby machinery, book time slots, make secure payments, track equipment location, and rate owners. Owners can list equipment, manage availability, and earn passive income.
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+## Key Features
 
-## Expanding the ESLint configuration
+* 🔍 **Equipment Discovery** – Search and filter machinery based on location, type, and availability
+* 📅 **Smart Booking System** – Time-slot based booking to avoid conflicts
+* 💳 **Secure Payments** – Simple and transparent payment flow
+* 📍 **Live Location Tracking** – Track rented equipment in real time
+* ⭐ **Ratings & Reviews** – Build trust between farmers and owners
+* 👨‍🌾 **User Roles** – Farmer, Equipment Owner, and Admin
+* 🛠️ **Admin Dashboard** – User management, equipment moderation, and analytics
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+* **Frontend:** Web / Mobile (React / Flutter)
+* **Backend:** Node.js / Express
+* **Database:** Supabase (PostgreSQL)
+* **Authentication:** Google Authentication (Supabase Auth)
+* **Maps & Location:** Open-source Maps API
+* **Hosting:** Cloud-based deployment
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## SDG Alignment
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+* **SDG 2 – Zero Hunger:** Improves farm productivity through better access to machinery
+* **SDG 12 – Responsible Consumption & Production:** Encourages sharing economy and optimal resource usage
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Target Users
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+* Small & marginal farmers
+* Agricultural equipment owners
+* Farmer producer organizations (FPOs)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Impact
+
+* Reduces farming costs
+* Increases equipment utilization
+* Promotes sustainable and shared agricultural practices
+* Improves income opportunities for rural communities
+
+## Hackathon Scope
+
+This project focuses on delivering a **working MVP** with core features: user authentication, equipment listing, booking, and basic admin control.
+
+---
+
+**Team Name:** Xlur
+**Hackathon:***Hack Matrix*
+**Theme:** Business, Finance & Digital Economy

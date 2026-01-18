@@ -240,4 +240,76 @@
         transform: scale(1);
         opacity: 1;
     }
+}Appending dropdown styles to Navbar.css
+
+/* Drodown Menu Styles */
+.navbar-dropdown-container {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
+
+.equipment-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 16px;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.chevron {
+    transition: transform 0.3s ease;
+}
+
+.chevron.rotate {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.05);
+    padding: 8px;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-item {
+    padding: 10px 16px;
+    border-radius: 8px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.dropdown-item:hover {
+    background: rgba(0,0,0,0.05);
+    transform: translateX(2px);
+    color: #2e7d32; /* Green accent on hover */
+}
+

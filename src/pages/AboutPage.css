@@ -1,0 +1,180 @@
+/* AboutPage.css */
+.about-container {
+    overflow-x: hidden;
+    background: #fdfdfd;
+}
+
+/* Hero Section */
+.about-hero {
+    position: relative;
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    filter: brightness(0.4) contrast(1.1);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+    padding: 0 2rem;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+    font-size: 1.4rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+/* Vision Section */
+.vision-section {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.vision-text h2 {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    margin-bottom: 1.5rem;
+}
+
+.vision-text p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.aim-points {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.aim-item {
+    font-size: 1.05rem;
+    color: #2e7d32;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.vision-img-wrapper {
+    position: relative;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+.vision-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.vision-img-wrapper:hover .vision-img {
+    transform: scale(1.03);
+}
+
+/* Unused sections removed */
+
+/* Goals Grid */
+.goals-section {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.goals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.goal-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 24px;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    text-align: left;
+    transition: all 0.3s;
+}
+
+.goal-card:hover {
+    box-shadow: 0 15px 40px rgba(46, 125, 50, 0.1);
+    border-color: #a5d6a7;
+}
+
+.goal-icon {
+    width: 60px;
+    height: 60px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.goal-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+}
+
+.goal-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .vision-section {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .stats-row {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}

@@ -1,0 +1,303 @@
+.rental-request-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 1.25rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.rental-request-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #ff6a00;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.rental-request-card:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%);
+    border-color: rgba(255, 106, 0, 0.3);
+    transform: translateX(4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.rental-request-card:hover::before {
+    opacity: 1;
+}
+
+.rental-request-card.pending {
+    border-left: 3px solid #ff6a00;
+}
+
+.rental-request-card.accepted {
+    border-left: 3px solid #4caf50;
+}
+
+.rental-request-card.rejected {
+    border-left: 3px solid #f44336;
+}
+
+.request-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.product-info {
+    display: flex;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.product-info img {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 2px solid rgba(255, 106, 0, 0.2);
+}
+
+.product-info h4 {
+    color: #fff;
+    font-size: 1rem;
+    margin: 0 0 0.25rem;
+    font-weight: 600;
+}
+
+.product-info .category {
+    color: #999;
+    font-size: 0.75rem;
+    margin: 0;
+}
+
+.status-badge {
+    padding: 0.35rem 0.85rem;
+    border-radius: 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.status-pending {
+    background: linear-gradient(135deg, rgba(255, 106, 0, 0.2) 0%, rgba(255, 106, 0, 0.1) 100%);
+    color: #ff6a00;
+    border: 1px solid rgba(255, 106, 0, 0.4);
+}
+
+.status-accepted {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.2) 0%, rgba(76, 175, 80, 0.1) 100%);
+    color: #4caf50;
+    border: 1px solid rgba(76, 175, 80, 0.4);
+}
+
+.status-rejected {
+    background: linear-gradient(135deg, rgba(244, 67, 54, 0.2) 0%, rgba(244, 67, 54, 0.1) 100%);
+    color: #f44336;
+    border: 1px solid rgba(244, 67, 54, 0.4);
+}
+
+/* Requester Information */
+.requester-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.requester-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff6a00 0%, #ff8533 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 12px rgba(255, 106, 0, 0.3);
+}
+
+.requester-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.requester-name {
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.requester-phone {
+    color: #999;
+    font-size: 0.8rem;
+}
+
+.request-details {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ccc;
+    font-size: 0.875rem;
+}
+
+.detail-item svg {
+    color: #ff6a00;
+}
+
+.detail-item.duration span {
+    background: rgba(255, 106, 0, 0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    color: #ff6a00;
+    font-weight: 600;
+}
+
+.request-message {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 2px solid rgba(255, 106, 0, 0.3);
+    border-radius: 4px;
+}
+
+.request-message p {
+    color: #ccc;
+    font-size: 0.875rem;
+    margin: 0;
+    font-style: italic;
+}
+
+.request-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cost {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.cost .label {
+    color: #999;
+    font-size: 0.875rem;
+}
+
+.cost .amount {
+    color: #ff6a00;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.request-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.request-actions button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.request-actions button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+}
+
+.request-actions button:hover::before {
+    width: 100%;
+    height: 100%;
+}
+
+.request-actions button svg {
+    position: relative;
+    z-index: 1;
+}
+
+.request-actions button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.chat-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.chat-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.18);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.accept-btn {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.2) 0%, rgba(76, 175, 80, 0.1) 100%);
+    color: #4caf50;
+    border: 1px solid rgba(76, 175, 80, 0.4);
+}
+
+.accept-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.3) 0%, rgba(76, 175, 80, 0.15) 100%);
+    border-color: #4caf50;
+    transform: scale(1.1);
+    box-shadow: 0 4px 16px rgba(76, 175, 80, 0.4);
+}
+
+.reject-btn {
+    background: linear-gradient(135deg, rgba(244, 67, 54, 0.2) 0%, rgba(244, 67, 54, 0.1) 100%);
+    color: #f44336;
+    border: 1px solid rgba(244, 67, 54, 0.4);
+}
+
+.reject-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, rgba(244, 67, 54, 0.3) 0%, rgba(244, 67, 54, 0.15) 100%);
+    border-color: #f44336;
+    transform: scale(1.1);
+    box-shadow: 0 4px 16px rgba(244, 67, 54, 0.4);
+}

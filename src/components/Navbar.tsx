@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import './Navbar.css';
-import { SignedIn, SignedOut, SignInButton, UserButton, useUser } from "@clerk/clerk-react";
-import { Plus, LayoutDashboard } from 'lucide-react';
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton, useUser } from "@clerk/clerk-react";
+import { Plus, LayoutDashboard, ChevronDown, Calendar, User as UserIcon } from 'lucide-react';
 import CompleteProfileForm from './CompleteProfileForm';
 import WelcomeCard from './WelcomeCard';
 import AddProductModal from './AddProductModal';
@@ -12,6 +12,8 @@ const Navbar = () => {
     const [showProfile, setShowProfile] = useState(false);
     const [showWelcome, setShowWelcome] = useState(false);
     const [showAddProduct, setShowAddProduct] = useState(false);
+    const [showEquipment, setShowEquipment] = useState(false);
+    const [initialProfileTab, setInitialProfileTab] = useState<'profile' | 'bookings'>('profile');
     const [userRole, setUserRole] = useState<string | null>(null);
     const { isSignedIn, user } = useUser();
 
@@ -41,8 +43,26 @@ const Navbar = () => {
                 <ul className="navbar-links">
                     <li><a href="/" className="navbar-link">Home</a></li>
                     <li><a href="/about" className="navbar-link">About</a></li>
-                    <li><a href="/services" className="navbar-link">Services</a></li>
-                    <li><a href="/contact" className="navbar-link">Contact</a></li>
+                    <li className="navbar-dropdown-container">
+                        <button
+                            className={`navbar-link equipment-toggle ${showEquipment ? 'active' : ''}`}
+                            onClick={() => setShowEquipment(!showEquipment)}
+                            onBlur={() => setTimeout(() => setShowEquipment(false), 200)} // Close on blur with delay for clicks
+                        >
+                            Equipment
+                            <ChevronDown size={16} className={`chevron ${showEquipment ? 'rotate' : ''}`} />
+                        </button>
+
+                        <div className={`dropdown-menu ${showEquipment ? 'show' : ''}`}>
+                            <a href="/?category=Tractors" className="dropdown-item">Tractors</a>
+                            <a href="/?category=Harvesters" className="dropdown-item">Harvesters</a>
+                            <a href="/?category=Planters" className="dropdown-item">Planters</a>
+                            <a href="/?category=Sprayers" className="dropdown-item">Sprayers</a>
+                            <a href="/?category=Ploughs" className="dropdown-item">Ploughs</a>
+                            <a href="/?category=Others" className="dropdown-item">Others</a>
+                        </div>
+                    </li>
+                    {/* Contact Link Removed */}
                 </ul>
                 <div className="navbar-actions">
                     {isSeller && (
@@ -52,29 +72,55 @@ const Navbar = () => {
                         </button>
                     )}
                     <SignedOut>
-                        <SignInButton mode="modal">
-                            <button style={{
-                                padding: '10px 24px',
-                                background: 'var(--button-bg)',
-                                border: 'none',
-                                borderRadius: '20px',
-                                color: 'var(--button-text)',
-                                cursor: 'pointer',
-                                fontSize: '0.9rem',
-                                fontWeight: '600',
-                                boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-                                transition: 'all 0.3s ease'
-                            }}
-                                onMouseEnter={(e) => {
-                                    e.currentTarget.style.transform = 'translateY(-1px)';
-                                    e.currentTarget.style.boxShadow = '0 6px 15px rgba(0,0,0,0.15)';
+                        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                            <SignInButton mode="modal">
+                                <button style={{
+                                    padding: '10px 24px',
+                                    background: 'transparent',
+                                    border: '2px solid var(--button-bg)',
+                                    borderRadius: '20px',
+                                    color: 'var(--button-bg)',
+                                    cursor: 'pointer',
+                                    fontSize: '0.9rem',
+                                    fontWeight: '600',
+                                    transition: 'all 0.3s ease'
                                 }}
-                                onMouseLeave={(e) => {
-                                    e.currentTarget.style.transform = 'translateY(0)';
-                                    e.currentTarget.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.background = 'var(--button-bg)';
+                                        e.currentTarget.style.color = 'var(--button-text)';
+                                        e.currentTarget.style.transform = 'translateY(-1px)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.background = 'transparent';
+                                        e.currentTarget.style.color = 'var(--button-bg)';
+                                        e.currentTarget.style.transform = 'translateY(0)';
+                                    }}
+                                >Sign In</button>
+                            </SignInButton>
+                            <SignUpButton mode="modal">
+                                <button style={{
+                                    padding: '10px 24px',
+                                    background: 'var(--button-bg)',
+                                    border: 'none',
+                                    borderRadius: '20px',
+                                    color: 'var(--button-text)',
+                                    cursor: 'pointer',
+                                    fontSize: '0.9rem',
+                                    fontWeight: '600',
+                                    boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
+                                    transition: 'all 0.3s ease'
                                 }}
-                            >Sign In</button>
-                        </SignInButton>
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.transform = 'translateY(-1px)';
+                                        e.currentTarget.style.boxShadow = '0 6px 15px rgba(0,0,0,0.15)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = 'translateY(0)';
+                                        e.currentTarget.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
+                                    }}
+                                >Sign Up</button>
+                            </SignUpButton>
+                        </div>
                     </SignedOut>
                     <SignedIn>
                         <div className="navbar-user-container">
@@ -93,17 +139,28 @@ const Navbar = () => {
                                 }
                             }}>
                                 <UserButton.MenuItems>
+                                    <UserButton.Action
+                                        label="My Bookings"
+                                        labelIcon={<Calendar size={16} />}
+                                        onClick={() => {
+                                            setInitialProfileTab('bookings'); // Need to add state for this
+                                            setShowProfile(true);
+                                        }}
+                                    />
                                     {isSeller && (
                                         <UserButton.Action
                                             label="Seller Dashboard"
                                             labelIcon={<LayoutDashboard size={16} />}
-                                            onClick={() => window.location.href = '/dashboard'}
+                                            onClick={() => window.location.href = '/seller-dashboard'}
                                         />
                                     )}
                                     <UserButton.Action
                                         label="Manage Profile"
-                                        labelIcon={<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>}
-                                        onClick={() => setShowProfile(true)}
+                                        labelIcon={<UserIcon size={16} />}
+                                        onClick={() => {
+                                            setInitialProfileTab('profile');
+                                            setShowProfile(true);
+                                        }}
                                     />
                                 </UserButton.MenuItems>
                             </UserButton>
@@ -179,6 +236,7 @@ const Navbar = () => {
                             <CompleteProfileForm
                                 onClose={() => setShowProfile(false)}
                                 initialRole={userRole}
+                                initialTab={initialProfileTab}
                             />
                         </div>
                         <button
