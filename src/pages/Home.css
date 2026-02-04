@@ -1,0 +1,240 @@
+/* Home Page Styles */
+
+/* Hero Section */
+.hero-section {
+    background-color: transparent;
+    padding: 0 20px 60px;
+    margin-top: -30px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 0;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Search Bar */
+.search-container {
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto 2rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 18px 30px 18px 50px;
+    /* 50px left for icon */
+    padding-right: 60px;
+    border-radius: 50px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    font-size: 1.1rem;
+    outline: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    border-color: var(--accent-color);
+}
+
+/* Search Icon */
+.search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    pointer-events: none;
+}
+
+/* Suggestions Dropdown */
+.suggestions-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 20px;
+    right: 20px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    z-index: 100;
+    overflow: hidden;
+    text-align: left;
+}
+
+.suggestion-item {
+    padding: 12px 20px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover {
+    background-color: var(--bg-secondary);
+}
+
+/* Map Section */
+.map-section {
+    position: relative;
+    height: 650px;
+    width: 100%;
+    overflow: hidden;
+    margin-top: -450px;
+    z-index: 1;
+}
+
+.map-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    filter: grayscale(20%) contrast(1.1);
+}
+
+.map-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 50%, rgba(255, 255, 255, 0) 75%, var(--bg-primary) 100%);
+}
+
+/* Machinery Filters Section */
+.filters-section {
+    background-color: var(--bg-primary);
+    padding: 3rem 2rem;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.filters-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.filter-btn {
+    padding: 10px 24px;
+    border-radius: 30px;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-btn.active {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+}
+
+.filter-btn.inactive {
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+
+/* Machinery Grid */
+.machinery-grid {
+    display: grid;
+    /* Strict 3-column Layout for Desktop */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+    width: 100%;
+    max-width: 1200px;
+    /* Constrain width to ensure 3 cards look good */
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.5s ease-in-out;
+}
+
+/* --- Responsive Media Queries --- */
+
+/* Mobile & Large Phone (up to 640px) */
+@media (max-width: 640px) {
+    .machinery-grid {
+        grid-template-columns: 1fr;
+        /* 1 Column */
+        gap: 1.5rem;
+        padding-left: 10px;
+        /* Ensure some breathing room */
+        padding-right: 10px;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+        margin-top: 1rem;
+    }
+
+    .hero-section {
+        margin-top: -10px;
+        padding-bottom: 30px;
+    }
+
+    .search-container {
+        width: 90%;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1rem;
+    }
+
+    .filters-section {
+        padding: 2rem 1rem;
+    }
+
+    .filter-btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+        flex: 1 1 auto;
+    }
+}
+
+/* Tablet / Small Laptop */
+@media (max-width: 1024px) {
+    .machinery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 Columns */
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .map-section {
+        height: 500px;
+        margin-top: -350px;
+    }
+}

@@ -141,12 +141,21 @@
     align-items: center;
     margin-top: auto;
     width: 100%;
-    padding: 1rem 2rem 2rem 2rem;
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
     box-sizing: border-box;
-    /* Prevent padding from adding to width */
+    flex-wrap: wrap;
+    gap: 10px;
+    /* Space between wrapped items */
     /* Match card side padding, maintain separation */
     background: transparent;
     /* Optional: Add a top border if separation is needed, or keep it clean */
+}
+
+/* Ensure rent button can shrink if needed or stays reachable */
+.rent-btn {
+    white-space: nowrap;
+    /* Keep text on one line if possible, or let it wrap if really needed, but usually button text should stay */
+    flex-shrink: 0;
 }
 
 .price-tag {

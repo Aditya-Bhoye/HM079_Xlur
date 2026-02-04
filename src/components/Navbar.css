@@ -240,7 +240,9 @@
         transform: scale(1);
         opacity: 1;
     }
-}Appending dropdown styles to Navbar.css
+}
+
+Appending dropdown styles to Navbar.css
 
 /* Drodown Menu Styles */
 .navbar-dropdown-container {
@@ -279,8 +281,8 @@
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     padding: 8px;
     min-width: 200px;
     opacity: 0;
@@ -308,8 +310,174 @@
 }
 
 .dropdown-item:hover {
-    background: rgba(0,0,0,0.05);
+    background: rgba(0, 0, 0, 0.05);
     transform: translateX(2px);
-    color: #2e7d32; /* Green accent on hover */
+    color: #2e7d32;
+    /* Green accent on hover */
 }
 
+/* Authentication Buttons (Ported from Inline) */
+.auth-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.btn-signin {
+    padding: 10px 24px;
+    background: transparent;
+    border: 2px solid var(--button-bg);
+    border-radius: 20px;
+    color: var(--button-bg);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-signin:hover {
+    background: var(--button-bg);
+    color: var(--button-text);
+    transform: translateY(-1px);
+}
+
+.btn-signup {
+    padding: 10px 24px;
+    background: var(--button-bg);
+    border: none;
+    border-radius: 20px;
+    color: var(--button-text);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.btn-signup:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Navbar Content Wrapper (Default Desktop) */
+.navbar-content {
+    display: flex;
+    flex: 3;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Mobile Menu Toggle (Hidden on Desktop) */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 960px) {
+    .navbar {
+        padding: 1rem 1.5rem;
+        flex-wrap: wrap;
+        /* Allow wrapping */
+        justify-content: space-between;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+        /* Show hamburger */
+    }
+
+    /* Hide Content by default on mobile, Show when open */
+    .navbar-content {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(15px);
+        padding: 2rem;
+        margin-top: 10px;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        animation: slideDown 0.3s ease forwards;
+        z-index: 999;
+    }
+
+    .navbar-content.mobile-open {
+        display: flex;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        width: 100%;
+        align-items: center;
+        /* Center links in mobile menu */
+    }
+
+    .navbar-actions {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .auth-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-signin,
+    .btn-signup {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Adjust Dropdown for Mobile */
+    .dropdown-menu {
+        position: static;
+        transform: none;
+        box-shadow: none;
+        background: rgba(0, 0, 0, 0.03);
+        margin-top: 10px;
+        display: none;
+        /* Hide unless toggled on mobile logic if specific mobile dropdown logic added */
+        /* For now, keep simple or let it be hover/click as is. */
+        /* Better: Make it always visible or clickable 100% width block */
+        width: 100%;
+        align-items: center;
+    }
+
+    .equipment-toggle {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .dropdown-menu.show {
+        display: flex;
+        opacity: 1;
+        visibility: visible;
+    }
+}

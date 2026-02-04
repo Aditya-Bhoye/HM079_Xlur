@@ -6,6 +6,9 @@ import planterHero from '../assets/planter_hero.png';
 import sprayerHero from '../assets/sprayer_hero.png';
 import ploughHero from '../assets/plough_hero.png';
 
+// Import CSS
+import './Home.css';
+
 import tractorSide from '../assets/tractor_side_1768688693390.png';
 import tractorFront from '../assets/tractor_front_1768688707408.png';
 import tractorBack from '../assets/tractor_back_1768688722278.png';
@@ -525,40 +528,17 @@ const Home = () => {
 
     return (
         <>
-            {/* Top Hero Section (White) */}
-            <div style={{
-                backgroundColor: 'transparent', /* Changed to transparent to let map show through */
-                padding: '0px 20px 60px', /* Removed top padding */
-                marginTop: '-30px', /* Negative margin to pull up closer to Navbar */
-                textAlign: 'center',
-                position: 'relative',
-                zIndex: 2,
-                marginBottom: '0' /* Ensure no margin pushes content down */
-            }}>
-                <h1 style={{
-                    fontSize: '4rem', /* Slightly adjusted size for better fit with multiple lines */
-                    fontWeight: '900', /* Extra Bold */
-                    color: 'var(--text-primary)',
-                    marginBottom: '1rem',
-                    letterSpacing: '-1.5px',
-                    lineHeight: '1.1'
-                }}>Rent <span style={{ color: '#2e7d32' }}>Agriculture</span><br />Equipments</h1>
-                <p style={{
-                    fontSize: '1.2rem',
-                    color: 'var(--text-secondary)',
-                    marginBottom: '3rem',
-                    maxWidth: '600px',
-                    marginLeft: 'auto',
-                    marginRight: 'auto'
-                }}>Find the best machinery for your farm near you. Rent tractors, harvesters, and more with ease.</p>
+            {/* Top Hero Section */}
+            <div className="hero-section">
+                <h1 className="hero-title">
+                    Rent <span style={{ color: '#2e7d32' }}>Agriculture</span><br />Equipments
+                </h1>
+                <p className="hero-subtitle">
+                    Find the best machinery for your farm near you. Rent tractors, harvesters, and more with ease.
+                </p>
 
                 {/* Search Bar */}
-                <div style={{
-                    position: 'relative',
-                    maxWidth: '500px', /* Reduced width */
-                    margin: '0 auto',
-                    marginBottom: '2rem'
-                }}>
+                <div className="search-container">
                     <input
                         type="text"
                         placeholder={placeholder}
@@ -581,26 +561,8 @@ const Home = () => {
                                 setShowSuggestions(false);
                             }
                         }}
-                        style={{
-                            width: '100%',
-                            padding: '18px 30px',
-                            paddingLeft: '50px', /* Space for left icon */
-                            paddingRight: '60px',
-                            borderRadius: '50px',
-                            border: '1px solid var(--border-color)',
-                            backgroundColor: 'var(--bg-secondary)',
-                            fontSize: '1.1rem',
-                            outline: 'none',
-                            boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
-                            transition: 'all 0.3s ease'
-                        }}
-                        onFocus={(e) => {
-                            e.target.style.boxShadow = '0 15px 40px rgba(0,0,0,0.12)';
-                            e.target.style.borderColor = 'var(--accent-color)';
-                        }}
-                        onBlur={(e) => {
-                            e.target.style.boxShadow = '0 10px 30px rgba(0,0,0,0.08)';
-                            e.target.style.borderColor = 'var(--border-color)';
+                        className="search-input"
+                        onBlur={() => {
                             // Delay hiding to allow click
                             setTimeout(() => setShowSuggestions(false), 200);
                         }}
@@ -616,14 +578,7 @@ const Home = () => {
                         strokeWidth="2.5"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        style={{
-                            position: 'absolute',
-                            left: '20px',
-                            top: '50%',
-                            transform: 'translateY(-50%)',
-                            color: 'var(--text-secondary)',
-                            pointerEvents: 'none'
-                        }}
+                        className="search-icon"
                     >
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -631,19 +586,7 @@ const Home = () => {
 
                     {/* Suggestions Dropdown */}
                     {showSuggestions && suggestions.length > 0 && (
-                        <div style={{
-                            position: 'absolute',
-                            top: '100%',
-                            left: '20px', /* Align with input text start somewhat */
-                            right: '20px',
-                            backgroundColor: 'white',
-                            borderRadius: '15px',
-                            boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
-                            marginTop: '10px',
-                            zIndex: 100,
-                            overflow: 'hidden',
-                            textAlign: 'left'
-                        }}>
+                        <div className="suggestions-dropdown">
                             {suggestions.map((s, idx) => (
                                 <div
                                     key={idx}
@@ -651,15 +594,7 @@ const Home = () => {
                                         setSearchQuery(s);
                                         setShowSuggestions(false);
                                     }}
-                                    style={{
-                                        padding: '12px 20px',
-                                        cursor: 'pointer',
-                                        borderBottom: idx === suggestions.length - 1 ? 'none' : '1px solid #f0f0f0',
-                                        color: 'var(--text-primary)',
-                                        fontSize: '1rem'
-                                    }}
-                                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--bg-secondary)'}
-                                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'white'}
+                                    className="suggestion-item"
                                 >
                                     {s}
                                 </div>
@@ -670,70 +605,21 @@ const Home = () => {
             </div>
 
             {/* Map Section (Background) */}
-            <div style={{
-                position: 'relative',
-                height: '650px', /* Reduced height as requested */
-                width: '100%',
-                overflow: 'hidden',
-                marginTop: '-450px', /* Adjusted pull-up to move map upward */
-                zIndex: 1
-            }}>
-                <img src={mapBackground} alt="Map Background" style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    opacity: 0.8,
-                    filter: 'grayscale(20%) contrast(1.1)'
-                }} />
+            <div className="map-section">
+                <img src={mapBackground} alt="Map Background" className="map-image" />
                 {/* Gradient Overlay */}
-                <div style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    /* Gradient: Solid White top 50%, then fades to transparent by 75% */
-                    background: 'linear-gradient(to bottom, #ffffff 0%, #ffffff 50%, rgba(255,255,255,0) 75%, var(--bg-primary) 100%)'
-                }}></div>
+                <div className="map-gradient"></div>
             </div>
 
             {/* Machinery Filters Section */}
-            <div style={{
-                backgroundColor: 'var(--bg-primary)',
-                padding: '3rem 2rem',
-                position: 'relative',
-                zIndex: 2,
-                textAlign: 'center'
-            }}>
+            <div className="filters-section">
                 {/* Filter Buttons */}
-                <div style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    gap: '12px',
-                    flexWrap: 'wrap',
-                    marginBottom: '1rem'
-                }}>
+                <div className="filters-container">
                     {['All', 'Tractors', 'Harvesters', 'Planters', 'Sprayers', 'Ploughs', 'Others'].map((cat) => (
                         <button
                             key={cat}
                             onClick={() => setSearchParams(cat === 'All' ? {} : { category: cat })}
-                            style={{
-                                padding: '10px 24px',
-                                borderRadius: '30px',
-                                border: 'none',
-                                backgroundColor: (categoryFilter === cat) || (!categoryFilter && cat === 'All')
-                                    ? 'var(--button-bg)'
-                                    : 'var(--bg-secondary)',
-                                color: (categoryFilter === cat) || (!categoryFilter && cat === 'All')
-                                    ? 'var(--button-text)'
-                                    : 'var(--text-secondary)',
-                                fontSize: '0.95rem',
-                                fontWeight: '600',
-                                cursor: 'pointer',
-                                transition: 'all 0.2s ease',
-                                boxShadow: (categoryFilter === cat) ? '0 5px 15px rgba(0,0,0,0.1)' : 'none',
-                                transform: (categoryFilter === cat) ? 'scale(1.05)' : 'scale(1)'
-                            }}
+                            className={`filter-btn ${(categoryFilter === cat) || (!categoryFilter && cat === 'All') ? 'active' : 'inactive'}`}
                         >
                             {cat}
                         </button>
@@ -741,18 +627,7 @@ const Home = () => {
                 </div>
 
                 {/* Machinery Grid */}
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
-                    gap: '2rem',
-                    marginTop: '3rem',
-                    width: '100%',
-                    maxWidth: '1600px',
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
-                    /* Animation for reordering */
-                    transition: 'all 0.5s ease-in-out'
-                }}>
+                <div className="machinery-grid">
                     {visibleMachinery.map((item) => (
                         <ShowcaseCard
                             key={item.id}

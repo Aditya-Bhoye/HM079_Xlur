@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
+/* Global Reset & Box Sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 :root {
     font-family: 'Outfit', sans-serif;
     line-height: 1.5;
@@ -25,13 +32,12 @@
     --shadow-color: rgba(0, 0, 0, 0.1);
     --input-bg: transparent;
     --card-bg: #ffffff;
-}
 
-/* Clerk User Button Tweaks */
-:root {
+    /* Clerk Tweaks */
     --cl-userButtonPopoverCard-background-color: rgba(255, 255, 255, 0.5);
 }
 
+/* Clerk User Button Overrides */
 .cl-userButtonPopoverCard,
 .cl-userButtonPopover-card {
     background-color: rgba(255, 255, 255, 0.7) !important;

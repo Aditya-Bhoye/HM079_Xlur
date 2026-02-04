@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import './Navbar.css';
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton, useUser } from "@clerk/clerk-react";
-import { Plus, LayoutDashboard, ChevronDown, Calendar, User as UserIcon } from 'lucide-react';
+import { Plus, LayoutDashboard, ChevronDown, Calendar, User as UserIcon, Menu, X } from 'lucide-react';
 import CompleteProfileForm from './CompleteProfileForm';
 import WelcomeCard from './WelcomeCard';
 import AddProductModal from './AddProductModal';
@@ -16,6 +16,9 @@ const Navbar = () => {
     const [initialProfileTab, setInitialProfileTab] = useState<'profile' | 'bookings'>('profile');
     const [userRole, setUserRole] = useState<string | null>(null);
     const { isSignedIn, user } = useUser();
+
+    // Mobile Menu State
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     // Trigger Welcome Animation on Login & Load DB Role
     useEffect(() => {
@@ -40,138 +43,112 @@ const Navbar = () => {
         <>
             <nav className="navbar">
                 <a href="/" className="navbar-logo">AgroShare</a>
-                <ul className="navbar-links">
-                    <li><a href="/" className="navbar-link">Home</a></li>
-                    <li><a href="/about" className="navbar-link">About</a></li>
-                    <li className="navbar-dropdown-container">
-                        <button
-                            className={`navbar-link equipment-toggle ${showEquipment ? 'active' : ''}`}
-                            onClick={() => setShowEquipment(!showEquipment)}
-                            onBlur={() => setTimeout(() => setShowEquipment(false), 200)} // Close on blur with delay for clicks
-                        >
-                            Equipment
-                            <ChevronDown size={16} className={`chevron ${showEquipment ? 'rotate' : ''}`} />
-                        </button>
 
-                        <div className={`dropdown-menu ${showEquipment ? 'show' : ''}`}>
-                            <a href="/?category=Tractors" className="dropdown-item">Tractors</a>
-                            <a href="/?category=Harvesters" className="dropdown-item">Harvesters</a>
-                            <a href="/?category=Planters" className="dropdown-item">Planters</a>
-                            <a href="/?category=Sprayers" className="dropdown-item">Sprayers</a>
-                            <a href="/?category=Ploughs" className="dropdown-item">Ploughs</a>
-                            <a href="/?category=Others" className="dropdown-item">Others</a>
-                        </div>
-                    </li>
-                    {/* Contact Link Removed */}
-                </ul>
-                <div className="navbar-actions">
-                    {isSeller && (
-                        <button className="btn-rent" onClick={() => setShowAddProduct(true)}>
-                            <Plus size={16} strokeWidth={2.5} />
-                            Add for Rent
-                        </button>
-                    )}
-                    <SignedOut>
-                        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                            <SignInButton mode="modal">
-                                <button style={{
-                                    padding: '10px 24px',
-                                    background: 'transparent',
-                                    border: '2px solid var(--button-bg)',
-                                    borderRadius: '20px',
-                                    color: 'var(--button-bg)',
-                                    cursor: 'pointer',
-                                    fontSize: '0.9rem',
-                                    fontWeight: '600',
-                                    transition: 'all 0.3s ease'
-                                }}
-                                    onMouseEnter={(e) => {
-                                        e.currentTarget.style.background = 'var(--button-bg)';
-                                        e.currentTarget.style.color = 'var(--button-text)';
-                                        e.currentTarget.style.transform = 'translateY(-1px)';
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        e.currentTarget.style.background = 'transparent';
-                                        e.currentTarget.style.color = 'var(--button-bg)';
-                                        e.currentTarget.style.transform = 'translateY(0)';
-                                    }}
-                                >Sign In</button>
-                            </SignInButton>
-                            <SignUpButton mode="modal">
-                                <button style={{
-                                    padding: '10px 24px',
-                                    background: 'var(--button-bg)',
-                                    border: 'none',
-                                    borderRadius: '20px',
-                                    color: 'var(--button-text)',
-                                    cursor: 'pointer',
-                                    fontSize: '0.9rem',
-                                    fontWeight: '600',
-                                    boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-                                    transition: 'all 0.3s ease'
-                                }}
-                                    onMouseEnter={(e) => {
-                                        e.currentTarget.style.transform = 'translateY(-1px)';
-                                        e.currentTarget.style.boxShadow = '0 6px 15px rgba(0,0,0,0.15)';
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        e.currentTarget.style.transform = 'translateY(0)';
-                                        e.currentTarget.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
-                                    }}
-                                >Sign Up</button>
-                            </SignUpButton>
-                        </div>
-                    </SignedOut>
-                    <SignedIn>
-                        <div className="navbar-user-container">
-                            <UserButton appearance={{
-                                elements: {
-                                    userButtonAvatarBox: {
-                                        width: '45px',
-                                        height: '45px'
-                                    },
-                                    userButtonPopoverCard: {
-                                        // Keeping explicit styles as backup to global CSS
-                                        backgroundColor: 'rgba(255, 255, 255, 0.7)',
-                                        backdropFilter: 'blur(20px)',
-                                        border: '1px solid rgba(255,255,255,0.3)'
-                                    }
-                                }
+                {/* Mobile Menu Toggle */}
+                <button
+                    className="mobile-menu-toggle"
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                >
+                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                </button>
+
+                {/* Navbar Content Area (Wraps Links + Actions) */}
+                <div className={`navbar-content ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+                    <ul className="navbar-links">
+                        <li><a href="/" className="navbar-link">Home</a></li>
+                        <li><a href="/about" className="navbar-link">About</a></li>
+                        <li className="navbar-dropdown-container">
+                            <button
+                                className={`navbar-link equipment-toggle ${showEquipment ? 'active' : ''}`}
+                                onClick={() => setShowEquipment(!showEquipment)}
+                                onBlur={() => setTimeout(() => setShowEquipment(false), 200)} // Close on blur with delay for clicks
+                            >
+                                Equipment
+                                <ChevronDown size={16} className={`chevron ${showEquipment ? 'rotate' : ''}`} />
+                            </button>
+
+                            <div className={`dropdown-menu ${showEquipment ? 'show' : ''}`}>
+                                <a href="/?category=Tractors" className="dropdown-item">Tractors</a>
+                                <a href="/?category=Harvesters" className="dropdown-item">Harvesters</a>
+                                <a href="/?category=Planters" className="dropdown-item">Planters</a>
+                                <a href="/?category=Sprayers" className="dropdown-item">Sprayers</a>
+                                <a href="/?category=Ploughs" className="dropdown-item">Ploughs</a>
+                                <a href="/?category=Others" className="dropdown-item">Others</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div className="navbar-actions">
+                        {isSeller && (
+                            <button className="btn-rent" onClick={() => {
+                                setShowAddProduct(true);
+                                setIsMobileMenuOpen(false); // Close mobile menu
                             }}>
-                                <UserButton.MenuItems>
-                                    <UserButton.Action
-                                        label="My Bookings"
-                                        labelIcon={<Calendar size={16} />}
-                                        onClick={() => {
-                                            setInitialProfileTab('bookings'); // Need to add state for this
-                                            setShowProfile(true);
-                                        }}
-                                    />
-                                    {isSeller && (
+                                <Plus size={16} strokeWidth={2.5} />
+                                Add for Rent
+                            </button>
+                        )}
+                        <SignedOut>
+                            <div className="auth-buttons">
+                                <SignInButton mode="modal">
+                                    <button className="btn-signin">Sign In</button>
+                                </SignInButton>
+                                <SignUpButton mode="modal">
+                                    <button className="btn-signup">Sign Up</button>
+                                </SignUpButton>
+                            </div>
+                        </SignedOut>
+                        <SignedIn>
+                            <div className="navbar-user-container">
+                                <UserButton appearance={{
+                                    elements: {
+                                        userButtonAvatarBox: {
+                                            width: '45px',
+                                            height: '45px'
+                                        },
+                                        userButtonPopoverCard: {
+                                            backgroundColor: 'rgba(255, 255, 255, 0.7)',
+                                            backdropFilter: 'blur(20px)',
+                                            border: '1px solid rgba(255,255,255,0.3)'
+                                        }
+                                    }
+                                }}>
+                                    <UserButton.MenuItems>
                                         <UserButton.Action
-                                            label="Seller Dashboard"
-                                            labelIcon={<LayoutDashboard size={16} />}
-                                            onClick={() => window.location.href = '/seller-dashboard'}
+                                            label="My Bookings"
+                                            labelIcon={<Calendar size={16} />}
+                                            onClick={() => {
+                                                setInitialProfileTab('bookings');
+                                                setShowProfile(true);
+                                                setIsMobileMenuOpen(false);
+                                            }}
                                         />
-                                    )}
-                                    <UserButton.Action
-                                        label="Manage Profile"
-                                        labelIcon={<UserIcon size={16} />}
-                                        onClick={() => {
-                                            setInitialProfileTab('profile');
-                                            setShowProfile(true);
-                                        }}
-                                    />
-                                </UserButton.MenuItems>
-                            </UserButton>
-                            {userRole && (
-                                <div className={`nav-sticker ${userRole.toLowerCase()}`}>
-                                    {userRole}
-                                </div>
-                            )}
-
-                        </div>
-                    </SignedIn>
+                                        {isSeller && (
+                                            <UserButton.Action
+                                                label="Seller Dashboard"
+                                                labelIcon={<LayoutDashboard size={16} />}
+                                                onClick={() => window.location.href = '/seller-dashboard'}
+                                            />
+                                        )}
+                                        <UserButton.Action
+                                            label="Manage Profile"
+                                            labelIcon={<UserIcon size={16} />}
+                                            onClick={() => {
+                                                setInitialProfileTab('profile');
+                                                setShowProfile(true);
+                                                setIsMobileMenuOpen(false);
+                                            }}
+                                        />
+                                    </UserButton.MenuItems>
+                                </UserButton>
+                                {userRole && (
+                                    <div className={`nav-sticker ${userRole.toLowerCase()}`}>
+                                        {userRole}
+                                    </div>
+                                )}
+                            </div>
+                        </SignedIn>
+                    </div>
                 </div>
             </nav>
 
