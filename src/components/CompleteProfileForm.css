@@ -19,6 +19,21 @@
     .profile-layout {
         grid-template-columns: 1fr;
     }
+
+    .profile-content {
+        padding: 1.5rem;
+    }
+
+    .ref-form-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .profile-sidebar {
+        padding: 1.5rem;
+        border-right: none;
+        border-bottom: 1px solid #f0f0f0;
+    }
 }
 
 /* --- Left Sidebar --- */
