@@ -27,12 +27,19 @@
         display: none;
     }
 
+    .contact-card-wrapper {
+        border-radius: 20px;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
     /* Transform Sidebar Menu into Tabs */
     .profile-sidebar {
-        padding: 2rem 1.5rem 0 1.5rem;
+        padding: 1rem 1rem 0 1rem;
         border-right: none;
         border-bottom: none;
         width: 100%;
+        box-sizing: border-box;
     }
 
     .profile-menu {
@@ -42,17 +49,21 @@
         background: #f5f7f9;
         padding: 4px;
         border-radius: 12px;
-        margin-top: 1.5rem !important;
+        margin-top: 1rem !important;
         gap: 0;
+        box-sizing: border-box;
     }
 
     .menu-item {
         flex: 1;
         justify-content: center;
-        padding: 10px;
-        font-size: 0.9rem;
+        padding: 8px 4px;
+        font-size: 0.85rem;
         border-radius: 10px;
         margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .menu-item:hover {
@@ -73,30 +84,91 @@
 
     .profile-layout {
         grid-template-columns: 1fr;
+        min-height: auto;
     }
 
     .profile-content {
-        padding: 1.5rem 1.5rem 2rem;
+        padding: 1rem;
+        box-sizing: border-box;
     }
 
     .ref-form-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1rem;
     }
 
     /* Fix Role Selection Overflow */
     .role-options-container {
         flex-direction: column;
         gap: 8px;
+        width: 100%;
+    }
+
+    .role-select-btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 0.9rem;
+        box-sizing: border-box;
     }
 
     .profile-header {
         margin-bottom: 0.5rem;
     }
 
+    .profile-name {
+        font-size: 1rem;
+        word-wrap: break-word;
+        max-width: 100%;
+    }
+
     .ref-pfp-container {
-        width: 120px;
-        height: 120px;
+        width: 80px;
+        height: 80px;
+        margin-bottom: 1rem;
+    }
+
+    .ref-pfp-edit-btn {
+        width: 30px;
+        height: 30px;
+        bottom: 5px;
+        right: 5px;
+    }
+
+    .ref-pfp-edit-btn svg {
+        width: 14px !important;
+        height: 14px !important;
+    }
+
+    .ref-input {
+        padding: 12px 14px;
+        font-size: 0.9rem;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    .ref-form-group label {
+        font-size: 0.8rem;
+    }
+
+    .btn-discard,
+    .btn-save {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        box-sizing: border-box;
+    }
+
+    .ref-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .ref-actions button {
+        width: 100%;
+    }
+
+    .content-title {
+        font-size: 1.25rem;
+        margin-bottom: 1.5rem;
     }
 }
 
