@@ -88,21 +88,7 @@ const CompleteProfileForm = ({ onClose, initialRole, initialTab = 'profile' }: {
 
                 {/* Right Content */}
                 <div className="profile-content">
-                    {/* Mobile Tab Switcher */}
-                    <div className="mobile-tabs">
-                        <button
-                            className={`mobile-tab-btn ${activeTab === 'profile' ? 'active' : ''}`}
-                            onClick={() => setActiveTab('profile')}
-                        >
-                            Personal Info
-                        </button>
-                        <button
-                            className={`mobile-tab-btn ${activeTab === 'bookings' ? 'active' : ''}`}
-                            onClick={() => setActiveTab('bookings')}
-                        >
-                            My Bookings
-                        </button>
-                    </div>
+
 
                     {activeTab === 'profile' ? (
                         <>

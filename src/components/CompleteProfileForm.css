@@ -15,49 +15,59 @@
     min-height: 500px;
 }
 
-/* Mobile Tabs */
-.mobile-tabs {
-    display: none;
-    margin-bottom: 2rem;
-    background: #f5f7f9;
-    padding: 6px;
-    border-radius: 16px;
-    gap: 0;
-}
-
-.mobile-tab-btn {
-    flex: 1;
-    padding: 12px;
-    border: none;
-    background: transparent;
-    border-radius: 12px;
-    font-weight: 600;
-    color: #666;
-    cursor: pointer;
-    font-size: 0.95rem;
-    transition: all 0.2s;
-}
-
-.mobile-tab-btn.active {
-    background: #fff;
-    color: #000;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
+/* Mobile Tabs - Reusing Profile Menu */
+/* Removed .mobile-tabs styles - leveraging .profile-menu instead */
 
 .desktop-only {
     display: block;
 }
 
 @media (max-width: 768px) {
-    .mobile-tabs {
-        display: flex;
-    }
-
     .desktop-only {
         display: none;
     }
 
+    /* Transform Sidebar Menu into Tabs */
+    .profile-sidebar {
+        padding: 2rem 1.5rem 0 1.5rem;
+        border-right: none;
+        border-bottom: none;
+        width: 100%;
+    }
+
     .profile-menu {
+        display: flex !important;
+        flex-direction: row;
+        width: 100%;
+        background: #f5f7f9;
+        padding: 4px;
+        border-radius: 12px;
+        margin-top: 1.5rem !important;
+        gap: 0;
+    }
+
+    .menu-item {
+        flex: 1;
+        justify-content: center;
+        padding: 10px;
+        font-size: 0.9rem;
+        border-radius: 10px;
+        margin: 0;
+    }
+
+    .menu-item:hover {
+        background: transparent;
+        color: #666;
+    }
+
+    .menu-item.active {
+        background: #fff;
+        color: #000;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Hide Icons in tabs to save space */
+    .menu-item svg {
         display: none;
     }
 
@@ -74,10 +84,10 @@
         gap: 1.5rem;
     }
 
-    .profile-sidebar {
-        padding: 2rem 1.5rem 0 1.5rem;
-        border-right: none;
-        border-bottom: none;
+    /* Fix Role Selection Overflow */
+    .role-options-container {
+        flex-direction: column;
+        gap: 8px;
     }
 
     .profile-header {
