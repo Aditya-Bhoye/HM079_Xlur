@@ -13,6 +13,8 @@
     display: grid;
     grid-template-columns: 260px 1fr;
     min-height: 500px;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 /* Mobile Tabs - Reusing Profile Menu */
@@ -160,6 +162,7 @@
     .ref-actions {
         flex-direction: column;
         gap: 0.75rem;
+        width: 100%;
     }
 
     .ref-actions button {
@@ -169,6 +172,80 @@
     .content-title {
         font-size: 1.25rem;
         margin-bottom: 1.5rem;
+    }
+}
+
+/* Extra small screens (phones in portrait) */
+@media (max-width: 480px) {
+    .contact-card-wrapper {
+        border-radius: 16px;
+        margin: 0;
+    }
+
+    .profile-sidebar {
+        padding: 0.75rem 0.75rem 0 0.75rem;
+    }
+
+    .profile-menu {
+        padding: 3px;
+        margin-top: 0.75rem !important;
+    }
+
+    .menu-item {
+        padding: 6px 2px;
+        font-size: 0.8rem;
+    }
+
+    .profile-content {
+        padding: 0.75rem;
+    }
+
+    .ref-pfp-container {
+        width: 70px;
+        height: 70px;
+    }
+
+    .ref-pfp-edit-btn {
+        width: 26px;
+        height: 26px;
+    }
+
+    .ref-pfp-edit-btn svg {
+        width: 12px !important;
+        height: 12px !important;
+    }
+
+    .profile-name {
+        font-size: 0.95rem;
+    }
+
+    .ref-input {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+    }
+
+    .ref-form-group label {
+        font-size: 0.75rem;
+    }
+
+    .role-select-btn {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+
+    .btn-discard,
+    .btn-save {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+
+    .content-title {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+    .ref-form-grid {
+        gap: 0.75rem;
     }
 }
 
